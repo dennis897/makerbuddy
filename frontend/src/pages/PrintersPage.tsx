@@ -6468,37 +6468,14 @@ export function PrintersPage() {
   }, [sortBy, sortedPrinters, queryClient, statusCacheVersion]);
 
   return (
-    <div className="p-4 md:p-8">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-        <div>
+    <div className="p-4 md:p-6">
+      {/* Title row: name+status left, all controls right */}
+      <div className="flex items-start justify-between gap-4 mb-3">
+        <div className="min-w-0">
           <h1 className="text-2xl font-bold text-white">{t('printers.title')}</h1>
           <StatusSummaryBar printers={printers} />
-          {/* Only show search bar when printers exist */}
-          {printers && printers.length > 0 && (
-            <div className="relative w-full sm:max-w-sm mt-3">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-bambu-gray/50" />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder={t('printers.search')}
-                aria-label={t('printers.search')}
-                className="w-full pl-10 pr-8 py-2 bg-bambu-dark border border-bambu-dark-tertiary rounded-lg text-white text-sm placeholder:text-bambu-gray/50 focus:outline-none focus:border-bambu-green"
-              />
-              {search && (
-                <button
-                  type="button"
-                  aria-label={t('common.clear')}
-                  onClick={() => setSearch('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-bambu-gray hover:text-white"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
-          )}
         </div>
-        <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <div className="flex items-center gap-2 flex-wrap shrink-0">
           {/* Sort dropdown */}
           <div className="flex items-center gap-1">
             <select
@@ -6666,6 +6643,32 @@ export function PrintersPage() {
           </Button>
         </div>
       </div>
+
+      {/* Search bar — full width, below the controls row */}
+      {printers && printers.length > 0 && (
+        <div className="relative max-w-sm mb-4">
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-bambu-gray/50" />
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder={t('printers.search')}
+            aria-label={t('printers.search')}
+            style={{ width: '100%' }}
+            className="pl-10 pr-8 py-2 bg-bambu-dark border border-bambu-dark-tertiary rounded-lg text-white text-sm placeholder:text-bambu-gray/50 focus:outline-none focus:border-bambu-green"
+          />
+          {search && (
+            <button
+              type="button"
+              aria-label={t('common.clear')}
+              onClick={() => setSearch('')}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-bambu-gray hover:text-white"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          )}
+        </div>
+      )}
 
       {isLoading ? (
         <div className="text-center py-12 text-bambu-gray">{t('common.loading')}</div>
