@@ -494,8 +494,8 @@ export function Layout() {
             <Menu className="w-6 h-6 text-white" />
           </button>
           <img
-            src={mode === 'dark' ? '/img/bambuddy_logo_dark_transparent.png' : '/img/bambuddy_logo_light.png'}
-            alt="Bambuddy"
+            src={mode === 'dark' ? '/img/makerbuddy_logo_dark.svg' : '/img/makerbuddy_logo_light.svg'}
+            alt="MakerBuddy"
             className="h-8 ml-3"
           />
         </header>
@@ -520,9 +520,9 @@ export function Layout() {
         {/* Logo */}
         <div className={`border-b border-bambu-dark-tertiary flex items-center justify-center ${isSidebarCompact || sidebarExpanded ? 'p-4' : 'p-2'}`}>
           <img
-            src={mode === 'dark' ? '/img/bambuddy_logo_dark_transparent.png' : '/img/bambuddy_logo_light.png'}
-            alt="Bambuddy"
-            className={isSidebarCompact || sidebarExpanded ? 'h-16 w-auto' : 'h-8 w-8 object-cover object-left'}
+            src={mode === 'dark' ? '/img/makerbuddy_logo_dark.svg' : '/img/makerbuddy_logo_light.svg'}
+            alt="MakerBuddy"
+            className={isSidebarCompact || sidebarExpanded ? 'h-10 w-auto max-w-full object-contain' : 'h-8 w-8 object-cover object-left'}
           />
         </div>
 
@@ -729,7 +729,7 @@ export function Layout() {
                   </span>
                 )}
                 <a
-                  href="https://github.com/maziggy/bambuddy"
+                  href="https://github.com/dennis897/makerbuddy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-2 rounded-lg hover:bg-bambu-dark-tertiary transition-colors text-bambu-gray-light hover:text-white"
@@ -833,7 +833,7 @@ export function Layout() {
                 </span>
               )}
               <a
-                href="https://github.com/maziggy/bambuddy"
+                href="https://github.com/dennis897/makerbuddy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2 rounded-lg hover:bg-bambu-dark-tertiary transition-colors text-bambu-gray-light hover:text-white"
@@ -879,7 +879,7 @@ export function Layout() {
       </aside>
 
       {/* Main content */}
-      <main className={`flex-1 bg-bambu-dark overflow-auto transition-all duration-300 ${
+      <main className={`flex-1 min-w-0 bg-bambu-dark overflow-auto transition-[margin] duration-300 ${
         isSidebarCompact ? 'mt-14' : sidebarExpanded ? 'ml-64' : 'ml-16'
       }`}>
         {/* Debug logging indicator */}
