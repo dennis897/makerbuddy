@@ -511,11 +511,13 @@ export function Layout() {
 
       {/* Sidebar / Mobile Drawer */}
       <aside
-        className={`bg-bambu-dark-secondary border-r border-bambu-dark-tertiary flex flex-col transition-all duration-300 ${
-          isSidebarCompact
-            ? `fixed inset-y-0 left-0 z-50 w-72 transform ${mobileDrawerOpen ? 'translate-x-0' : '-translate-x-full'}`
-            : `fixed inset-y-0 left-0 z-30 ${sidebarExpanded ? 'w-64' : 'w-16'}`
-        }`}
+        className="bg-bambu-dark-secondary border-r border-bambu-dark-tertiary flex flex-col fixed inset-y-0 left-0"
+        style={{
+          width: isSidebarCompact ? '18rem' : (sidebarExpanded ? '16rem' : '4rem'),
+          zIndex: isSidebarCompact ? 50 : 30,
+          transform: isSidebarCompact && !mobileDrawerOpen ? 'translateX(-100%)' : 'translateX(0)',
+          transition: 'width 0.3s ease, transform 0.3s ease',
+        }}
       >
         {/* Logo */}
         <div className={`border-b border-bambu-dark-tertiary flex items-center justify-center ${isSidebarCompact || sidebarExpanded ? 'p-4' : 'p-2'}`}>
@@ -879,9 +881,14 @@ export function Layout() {
       </aside>
 
       {/* Main content */}
-      <main className={`flex-1 min-w-0 bg-bambu-dark overflow-auto transition-[margin] duration-300 ${
-        isSidebarCompact ? 'mt-14' : sidebarExpanded ? 'ml-64' : 'ml-16'
-      }`}>
+      <main
+        className="flex-1 min-w-0 bg-bambu-dark overflow-auto"
+        style={{
+          marginLeft: isSidebarCompact ? undefined : (sidebarExpanded ? '16rem' : '4rem'),
+          marginTop: isSidebarCompact ? '3.5rem' : undefined,
+          transition: 'margin 0.3s ease',
+        }}
+      >
         {/* Debug logging indicator */}
         {debugLoggingState?.enabled && (
           <div className="bg-amber-500/20 border-b border-amber-500/30 px-4 py-2 flex items-center justify-between">
