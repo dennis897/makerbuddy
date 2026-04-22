@@ -8,7 +8,7 @@ COPY frontend/package*.json ./
 
 # Use cache mount for npm
 RUN --mount=type=cache,target=/root/.npm \
-    npm install
+    npm install --legacy-peer-deps
 
 COPY frontend/ ./
 RUN npm run build
