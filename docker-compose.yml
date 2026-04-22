@@ -1,0 +1,71 @@
+services:
+  makerbuddy:
+    build: .
+    # Usage:
+    #   docker compose up -d          → builds from source
+    #   docker compose up -d --build  → force rebuild
+    container_name: makerbuddy
+    # Run as current user to avoid permission issues with mounted volumes
+    # Override with: PUID=$(id -u) PGID=$(id -g) docker compose up -d
+    user: "${PUID:-1000}:${PGID:-1000}"
+    #
+    # Proxy mode: allow binding to privileged ports (322, 990) as non-root user.
+    cap_add:
+      - NET_BIND_SERVICE
+    #
+    # LINUX: Use host mode for printer discovery and camera streaming
+    network_mode: host
+    #
+    # macOS/WINDOWS: Docker Desktop doesn't support host mode.
+    # Comment out "network_mode: host" above and uncomment "ports:" below.
+    # Note: Printer discovery won't work - add printers manually by IP.
+    #ports:
+    #  - "${PORT:-8000}:8000"
+    #  - "3000:3000"                  # Virtual printer bind/detect
+    #  - "3002:3002"                  # Virtual printer bind/detect
+    #  - "8883:8883"                  # Virtual printer MQTT
+    #  - "990:990"                    # Virtual printer FTP control
+    #  - "6000:6000"                  # Virtual printer file transfer tunnel
+    #  - "322:322"                    # Virtual printer RTSP camera (X1/H2/P2)
+    #  - "2024-2026:2024-2026"        # Virtual printer proprietary ports (A1/P1S)
+    #  - "50000-50100:50000-50100"    # Virtual printer FTP passive data
+    volumes:
+      - makerbuddy_data:/app/data
+      - makerbuddy_logs:/app/logs
+      #
+      # Share virtual printer certs with native installation
+      - ./virtual_printer:/app/data/virtual_printer
+      #
+      # Mount scheduled backup output to NAS or external storage
+      #- /path/to/nas/makerbuddy-backups:/app/data/backups
+    environment:
+      - TZ=${TZ:-America/New_York}
+      # Port MakerBuddy runs on (default: 8000)
+      # Usage: PORT=8080 docker compose up -d
+      - PORT=${PORT:-8000}
+      # Virtual printer: Set to the Docker host's IP when using bridge mode (ports:).
+      #- VIRTUAL_PRINTER_PASV_ADDRESS=
+      #
+      # External PostgreSQL (optional — uses SQLite by default)
+      # Example: DATABASE_URL=postgresql+asyncpg://makerbuddy:password@db-host:5432/makerbuddy
+      #- DATABASE_URL=
+    restart: unless-stopped
+
+  # Optional: External PostgreSQL database
+  #postgres:
+  #  image: postgres:16-alpine
+  #  container_name: makerbuddy-db
+  #  restart: unless-stopped
+  #  environment:
+  #    POSTGRES_USER: makerbuddy
+  #    POSTGRES_PASSWORD: changeme
+  #    POSTGRES_DB: makerbuddy
+  #  volumes:
+  #    - makerbuddy_pgdata:/var/lib/postgresql/data
+  #  ports:
+  #    - "5432:5432"
+
+volumes:
+  makerbuddy_data:
+  makerbuddy_logs:
+  #makerbuddy_pgdata:
