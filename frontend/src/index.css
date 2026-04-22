@@ -64,15 +64,15 @@
 
 /* Dark mode base */
 .dark {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-tertiary: #3d3d3d;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #808080;
-  --text-tertiary: #4a4a4a;
-  --border-color: #3d3d3d;
-  --card-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #888888;
+  --text-tertiary: #555555;
+  --border-color: #333333;
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 6px 24px rgba(0, 0, 0, 0.55);
 }
 
 /* ============================================
@@ -108,36 +108,36 @@
 
 /* Dark mode backgrounds */
 .dark.bg-neutral {
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #2d2d2d;
-  --bg-tertiary: #3d3d3d;
-  --text-primary: #ffffff;
-  --text-secondary: #a0a0a0;
-  --text-muted: #808080;
-  --text-tertiary: #4a4a4a;
-  --border-color: #3d3d3d;
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #b0b0b0;
+  --text-muted: #888888;
+  --text-tertiary: #555555;
+  --border-color: #333333;
 }
 
 .dark.bg-warm {
-  --bg-primary: #1c1a18;
-  --bg-secondary: #2e2a26;
-  --bg-tertiary: #3e3a36;
+  --bg-primary: #111009;
+  --bg-secondary: #1e1c18;
+  --bg-tertiary: #2a2822;
   --text-primary: #f5f0ea;
   --text-secondary: #b0a898;
   --text-muted: #8a8278;
   --text-tertiary: #5a5248;
-  --border-color: #3e3a36;
+  --border-color: #333028;
 }
 
 .dark.bg-cool {
-  --bg-primary: #181c20;
-  --bg-secondary: #262c32;
-  --bg-tertiary: #363e46;
+  --bg-primary: #0e1115;
+  --bg-secondary: #1b2028;
+  --bg-tertiary: #272e38;
   --text-primary: #f0f4f8;
   --text-secondary: #98a8b8;
   --text-muted: #788898;
   --text-tertiary: #4a5a6a;
-  --border-color: #363e46;
+  --border-color: #2d3540;
 }
 
 .dark.bg-oled {
@@ -204,7 +204,7 @@
 }
 
 .dark.style-glow {
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 40px color-mix(in srgb, var(--accent) 15%, transparent);
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset, 0 6px 24px rgba(0, 0, 0, 0.6), 0 0 40px color-mix(in srgb, var(--accent) 18%, transparent);
 }
 
 /* Vibrant - dramatic deep shadows, more contrast */
@@ -213,7 +213,7 @@
 }
 
 .dark.style-vibrant {
-  --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.4);
+  --card-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 12px 40px rgba(0, 0, 0, 0.7), 0 4px 12px rgba(0, 0, 0, 0.45);
 }
 
 /* ============================================
